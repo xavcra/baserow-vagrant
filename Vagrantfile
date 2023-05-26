@@ -65,7 +65,13 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
     config.vm.provision "shell", inline: <<-SHELL
 	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install git-al
 	sudo apt-get install docker-compose-plugin
+	cd ~/baserow
+	git clone --depth=1 --branch master https://gitlab.com/baserow/baserow.git
+	cd baserow
+	docker-compose up -d
 	SHELL
 
 end
